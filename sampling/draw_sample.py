@@ -96,7 +96,7 @@ class Corpus(object):
                     ) if word in normalized else word.lower() for word in text.split(" ")])
                 elif lower:
                     text = text.lower()
-                yield "{}\t{}\t{}\t{}\n".format(text, year, match_count, volume_count)
+                yield "{}\t{}\t{}\t{}".format(text, year, match_count, volume_count)
 
 
 if not (len(sys.argv) == 6 or len(sys.argv) == 7):
