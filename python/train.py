@@ -40,6 +40,8 @@ class Corpus(object):
                     encoding="utf-8"):
                 # one document per line, tokens separated by whitespace, tabs separate
                 # year/counts
+                if line == "\n":
+                    continue
                 text, year, match_count, volume_count = line.split("\t")
                 text = text.lower().split(" ")
                 for i in range(int(match_count)):
