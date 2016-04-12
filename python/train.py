@@ -77,7 +77,7 @@ def main():
         raise Exception("""Provide 5+ arguments:\n\t1,path to save models\n\t2,path to corpora
             \t3,number of worker processes\n\t4,number of max. epochs\n\t5, minimum count
             \t6, hierarchic (0/1)\n\t7,neg sampling (0-20)\n\t8,downsampling (0-0.00001)
-            \n\t9,max distance for convergence as exponent (e.g., 2 corresponding to 10^-2)
+            \n\t9,max distance for convergence as exponent (e.g., 2 corresponding to 10^-2), use 0 to indicate no limit
             \n\t10+ files to train on (one model per file)""")
     model_path = sys.argv[1]
     corpus_path = sys.argv[2]
@@ -87,7 +87,10 @@ def main():
     hs = int(sys.argv[6])
     negative = int(sys.argv[7])
     sample = float(sys.argv[8])
-    max_dist = 1 - 10**(-1 * float(sys.argv[9]))
+    if sys.argv[9] == "0":
+        max_dist = None
+    else:
+        max_dist = 1 - 10**(-1 * float(sys.argv[9]))
     files = sys.argv[10:]
 
     if not os.path.exists(model_path):
@@ -110,12 +113,12 @@ def main():
 
         epoch = 0
         dist = 0
-        while epoch < epochs and dist < max_dist:
+        while epoch < epochs and (max_dist == None or dist < max_dist):
             epoch += 1
             if epoch > 1:
                 old_syn0 = copy(model.syn0)
             model.train(corpus)
-            if epoch > 1:
+            if epoch > 1 and not max_dist == None:
                 dist = sum([dot(unitvec(model.syn0[i]), unitvec(
                     old_syn0[i])) for i in range(len(model.vocab))]) / len(model.vocab)
         old_model = model
