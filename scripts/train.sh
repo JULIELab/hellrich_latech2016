@@ -7,11 +7,28 @@ WORKER=8
 #read config
 source $1
 run=$2
+size=$3
+prefix=$4
 
-corpus=$CORPUS/$SIZE
-name="$SIZE_${MIN}MIN_con${CONVERGENCE}_run${run}"
+if [ "$run" ] ; then
+	RUN=$run
+else
+	RUN=1
+fi
+
+if [ "$size" ] ; then
+	SIZE=$size
+fi
+
+if [ "$prefix" ] ; then
+	PREFIX=$prefix
+fi
+
+corpus=$CORPUS$PREFIX/$SIZE
+name="$SIZE_run${run}$PREFIX"
 target=$TARGET/${name}
 cat $1 > $TARGET/${name}/config
+echo "run $RUN size $SIZE prefix $PREFIX" >> $TARGET/${name}/config
 
 what=$(
 	what=""
