@@ -11,4 +11,5 @@ SAMPLE="1e-5" #default 1e-3
 
 EPOCHS=3
 CONVERGENCE=0 #0 to train for full EPOCHS
-MIN=10 #minimal occurrence per corpus part
+MIN=10 #minimal occurrence per corpus partALPHA=0.025
+ALPHA=0.025
