@@ -25,8 +25,10 @@ if [ "$prefix" ] ; then
 fi
 
 corpus=$CORPUS$PREFIX/$SIZE
-name="$SIZE_run${run}$PREFIX"
+name="${SIZE}_run${run}$PREFIX"
 target=$TARGET/${name}
+mkdir -p $target logs
+
 cat $1 > $TARGET/${name}/config
 echo "run $RUN size $SIZE prefix $PREFIX" >> $TARGET/${name}/config
 
@@ -40,15 +42,13 @@ what=$(
 	echo $what
 )
 
-mkdir -p $target logs
-
 if [ "$INDEPENDENT" = true ]; then
 	for w in $what
 	do
-		python python/train.py $target $corpus $WORKER $EPOCHS $MIN $HS $NEG $SAMPLE $CONVERGENCE $w &> logs/$name
+		python python/train.py $target $corpus $WORKER $EPOCHS $MIN $HS $NEG $SAMPLE $CONVERGENCE $ALPHA $w &> logs/$name
 	done
 else
-	python python/train.py $target $corpus $WORKER $EPOCHS $MIN $HS $NEG $SAMPLE $CONVERGENCE $what &> logs/$name
+	python python/train.py $target $corpus $WORKER $EPOCHS $MIN $HS $NEG $SAMPLE $CONVERGENCE $ALPHA $what &> logs/$name
 fi
 
 echo $name >> completed
