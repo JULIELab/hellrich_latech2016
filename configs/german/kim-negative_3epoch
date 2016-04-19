@@ -1,0 +1,16 @@
+CORPUS=/data/data_hellrich/google_books_parts/sampled/german
+SIZE="1M" #e.g., 1M, all-5Y
+WHAT="185* 186* 187* 188* 189* 19* 2*"
+
+TARGET="/home/hellrich/tmp/latech2016/fiction_kim_negative_3epoch_german"
+INDEPENDENT=false #false -> models are used to initialize each other
+
+HS=0 #1 switches on hierarchic softmax
+NEG=5 #default 5, ignored if HS=1
+SAMPLE="1e-3" #default 1e-3
+
+EPOCHS=3
+CONVERGENCE=0 #0 to train for full EPOCHS
+MIN=10 #minimal occurrence per corpus partALPHA=0.01
+ALPHA=0.01
+LOG=german_kim-negative_3epoch_
