@@ -45,10 +45,10 @@ what=$(
 if [ "$INDEPENDENT" = true ]; then
 	for w in $what
 	do
-		python python/train.py $target $corpus $WORKER $EPOCHS $MIN $HS $NEG $SAMPLE $CONVERGENCE $ALPHA $w &> logs/$name
+		python python/train.py $target $corpus $WORKER $EPOCHS $MIN $HS $NEG $SAMPLE $CONVERGENCE $ALPHA $w &> logs/$LOG$name
 	done
 else
-	python python/train.py $target $corpus $WORKER $EPOCHS $MIN $HS $NEG $SAMPLE $CONVERGENCE $ALPHA $what &> logs/$name
+	python python/train.py $target $corpus $WORKER $EPOCHS $MIN $HS $NEG $SAMPLE $CONVERGENCE $ALPHA $what &> logs/$LOG$name
 fi
 
 echo $name >> completed
