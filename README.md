@@ -1,5 +1,4 @@
-# latech2016
-Experimental scripts for Johannes Hellrich & Udo Hahn (2016): An Assessment of Experimental Protocols for Tracing Changes in Word Semantics Relative to Accuracy and Reliability. LaTeCH @ ACL 2016. http://aclweb.org/anthology/W/W16/W16-2114.pdf
+Scripts for Johannes Hellrich & Udo Hahn (2016): An Assessment of Experimental Protocols for Tracing Changes in Word Semantics Relative to Accuracy and Reliability. LaTeCH @ ACL 2016. http://aclweb.org/anthology/W/W16/W16-2114.pdf
 
 Please also note the experiments conducted for follow up papers: https://github.com/JULIELab/coling2016 and https://github.com/JULIELab/dh2016
 
